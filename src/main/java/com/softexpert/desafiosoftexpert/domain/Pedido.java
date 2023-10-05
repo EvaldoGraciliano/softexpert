@@ -1,10 +1,11 @@
 package com.softexpert.desafiosoftexpert.domain;
 
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -12,8 +13,15 @@ import java.math.BigDecimal;
 @Data
 @Builder
 public class Pedido {
-    public static BigDecimal valorTotalPedido;
-    private String nomeCliente;
-    private BigDecimal valorPedido;
 
+
+    /*@Min(value = 1, message = "O valor deve ser maior que zero")
+    public static BigDecimal valorTotalPedido;*/
+
+    @NotNull
+    private String nomeCliente;
+
+    @NotNull
+    @Min(value = 1, message = "O valor deve ser maior que zero")
+    private BigDecimal valorPedido;
 }

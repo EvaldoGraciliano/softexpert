@@ -28,17 +28,17 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public BigDecimal somaTotalPedidos(List<Pedido>  pedidos) {
 
-        BigDecimal ValorTotalPedidos = pedidos.stream()
+        return pedidos.stream()
                 .map(Pedido::getValorPedido)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        Pedido.valorTotalPedido = ValorTotalPedidos;
-        return ValorTotalPedidos;
+        //Pedido.valorTotalPedido = ValorTotalPedidos;
+        //return ValorTotalPedidos;
     }
 
     @Override
-    public void calcularValorTotalComAcrecimosEDescontos(BigDecimal valorTotalPedidos, PedidoDTO pedidoDTO) {
-       Pedido.valorTotalPedido =  valorTotalPedidos.add(pedidoDTO.getDescontoAcrescimo().getValorEntrega())
+    public BigDecimal calcularValorTotalComAcrecimosEDescontos(BigDecimal valorTotalPedidos, PedidoDTO pedidoDTO) {
+       return valorTotalPedidos.add(pedidoDTO.getDescontoAcrescimo().getValorEntrega())
                 .add(pedidoDTO.getDescontoAcrescimo().getValorAcrescimoEmReal())
                 .add(pedidoDTO.getDescontoAcrescimo().getValorAcrescimoEmPorcentagem().multiply(valorTotalPedidos)
                         .divide(new BigDecimal(100), RoundingMode.HALF_UP))

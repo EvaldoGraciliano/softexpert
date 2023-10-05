@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PedidoService {
      List<Pedido> somaPedidosPorCliente(PedidoDTO pedidosDTO);
-    BigDecimal somaTotalPedidos(List<Pedido> pedidos);
+    BigDecimal somaTotalPedidos(List<Pedido> pedidos); // feito
 
-    void calcularValorTotalComAcrecimosEDescontos(BigDecimal valorTotalPedidos, PedidoDTO pedidoDTO);
+    BigDecimal calcularValorTotalComAcrecimosEDescontos(BigDecimal valorTotalPedidos, PedidoDTO pedidoDTO);
 }
